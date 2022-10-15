@@ -1,0 +1,61 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    <title>Register</title>
+{% endblock %}
+
+
+{% block style %}
+    <style>
+        .row {padding: 20px; text-align: center;}
+        .register_form_submit {text-align: center;}
+    </style>    
+{% endblock %}
+
+{% block script %}
+    <script src="{{ url_for('static', filename='register.js') }}"></script>
+{% endblock %}
+
+
+{% block body %}
+<div class="register_form_submit">
+    Register
+</div>
+<form action="{{ url_for('register') }}" method="POST" id="register_form">
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-5">
+            <div class="form-group">
+                <label for="username"><span class="requirement">*</span>Username</label>
+                <input type="text" class="form-control" placeholder="username" id="username" name="username" autofocus autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label for="email"><span class="requirement">*</span>Email</label>
+                <input type="email" class="form-control" placeholder="email" id="email" name="email" autocomplete="off">
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="form-group">
+                <label for="password"><span class="requirement">*</span>Password</label>
+                <input type="password" class="form-control" placeholder="password" id="password" name="password" autofocus autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label for="password1"><span class="requirement">*</span>Re-enter Password</label>
+                <input type="password" class="form-control" placeholder="confirm password" id="password1" name="password1" autofocus autocomplete="off">
+            </div>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+    <div class="register_form_submit">
+        <button type="submit" class="btn btn-primary">Register</button>
+        {% if register_error %}
+            <div class="error_message">
+                {{ register_error }}
+            </div>
+        {% else %}
+            <br><br>
+        {% endif %}
+        <a href="{{ url_for('login') }}"><b>Login</b></a>
+    </div>
+</form>
+{% endblock %}

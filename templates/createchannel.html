@@ -1,0 +1,44 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    <title>Create Chennel</title>
+{% endblock %}
+
+
+{% block style %}
+    <style>
+        .row {padding: 50px; text-align: center;}
+    </style>    
+{% endblock %}
+
+{% block script %}
+{% endblock %}
+
+
+{% block body %}
+    <div class="row">
+        <div class="col-lg-4">
+
+        </div>
+        <div class="col-lg-4">
+            <form action="{{ url_for('createchannel') }}" method="POST">
+                <div class="form-group">
+                    <label for="channelname"><span class="requirement">*</span>Channel Name</label>
+                    <input id="channelname" type="text" class="form-control" placeholder="name your channel" name="channelname" autofocus autocomplete="off">
+                </div>
+                <button type="submit" class="btn btn-primary">Create</button>
+            </form>
+            {% if create_channel_error %}
+                <div class="error_message">
+                    {{ create_channel_error }}
+                </div>
+            {% else %}
+                <br>
+            {% endif %}
+            <a href="/">Cancel</a>
+        </div>
+        <div class="col-lg-4">
+
+        </div>
+    </div>
+{% endblock %}

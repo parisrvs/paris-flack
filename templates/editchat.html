@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    <title>
+        edit chat
+    </title>
+{% endblock %}
+
+{% block style %}
+<style>
+    .row {padding: 20px; text-align: center;}
+</style>
+{% endblock %}
+
+{% block script %}    
+{% endblock %}
+
+
+{% block body %}
+    <div class="row">
+        <div class="col-lg-3">
+            Channel: {{ chat.channelname }}
+        </div>
+        <div class="col-lg-6">
+            <form action="{{ url_for('editchat', chat_id=chat.id) }}" method="POST">
+                <div class="form-group">
+                    <label for="chat_message">Edit Chat Message</label>
+                    <textarea class="form-control" rows="10" id="chat_message" name="chat_message">{{ chat.message }}</textarea><br>
+                </div>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+            {% if editchat_error %}
+                <div class="error_message">
+                    {{ editchat_error }}
+                </div>
+            {% else %}
+                <br>
+            {% endif %}
+            <a href="/">Cancel</a>
+        </div>
+        <div class="col-lg-3">
+            Time: {{ chat.time }}
+        </div>
+    </div>
+{% endblock %}
